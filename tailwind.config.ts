@@ -17,6 +17,9 @@ const config: Config = {
         containerMedium: "45rem",
         container: "60rem",
         containerLarge: "73.75rem"
+      },
+      colors: {
+        bsDark: "rgba(var(--bs-dark-rgb))"
       }
     }
   },
