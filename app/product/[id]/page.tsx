@@ -3,13 +3,24 @@ import { Container } from "@components/Container";
 import { Rating } from "@components/Rating";
 import { fetchProducts } from "@utils/fetchProducts";
 import Link from "next/link";
+import { notFound } from "next/navigation";
+
+export async function generateStaticParams() {
+  const products = await fetchProducts();
+
+  return products.map((product) => ({
+    id: product._id
+  }));
+}
 
 export const ProductPage = async ({ params }: { params: { id: string } }) => {
+  const { id } = params;
+
   const products = await fetchProducts();
-  const product = products.find((p) => p._id === params.id);
+  const product = products.find((p) => p._id === id);
 
   if (!product) {
-    return null;
+    notFound();
   }
 
   return (

@@ -1,7 +1,9 @@
+import { URL } from "url";
 import { Product } from "./types";
 
 export async function fetchProducts() {
-  const res = await fetch(`http:/localhost:3000/api/products`);
+  const uri = process.env.API_URL;
+  const res = await fetch(uri as RequestInfo | URL);
 
   const products = (await res.json()) as unknown;
   assertIsProducts(products);
