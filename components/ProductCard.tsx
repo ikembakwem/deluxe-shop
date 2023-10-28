@@ -2,19 +2,7 @@
 import { FC } from "react";
 import { Rating } from "./Rating";
 import Link from "next/link";
-
-export type Product = {
-  _id: string;
-  name: string;
-  image: string;
-  description: string;
-  brand: string;
-  category: string;
-  price: number;
-  countInStock: number;
-  rating: number;
-  numOfReviews: number;
-};
+import { Product } from "@utils/types";
 
 interface Props {
   product: Product;

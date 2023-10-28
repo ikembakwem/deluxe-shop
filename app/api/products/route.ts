@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest } from "next";
 import { products } from "@lib/products.js";
 
 export async function GET(request: NextApiRequest) {
