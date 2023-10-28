@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { FC } from "react";
 import { Rating } from "./Rating";
+import Link from "next/link";
 
 export type Product = {
   _id: string;
@@ -23,15 +24,15 @@ export const ProductCard: FC<Props> = ({ product }) => {
   return (
     <div className="flex flex-col break-words rounded-md p-5 my-5 border border-black/20">
       <div className="">
-        <a href="">
+        <Link href={`/product/${product._id}`}>
           <img src={product.image} alt="Product's image" className="w-full rounded-t-md" />
-        </a>
+        </Link>
         <div className="shrink grow basis-auto p-5 ">
-          <a href="">
+          <Link href={`/product/${product._id}`}>
             <div className="h-10 overflow-hidden text-ellipsis whitespace-nowrap mb-2 font-bold">
-              {product.description}
+              {product.name}
             </div>
-          </a>
+          </Link>
           <div>
             <Rating rating={product.rating} numOfReviews={product.numOfReviews} />
           </div>
