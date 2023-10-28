@@ -21,7 +21,9 @@ const config: Config = {
       colors: {
         bsDark: "rgba(var(--bs-dark-rgb))",
         ratings: "var(--ratings-fill)",
-        bsGray: "var(--bs-gray)"
+        bsGray: "var(--bs-gray)",
+        borderColor: "var(--bs-border-color)",
+        bsBlue: "var(--bs-blue)"
       }
     }
   },

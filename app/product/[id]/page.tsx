@@ -1,14 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 import { Container } from "@components/Container";
-import { ProductCard } from "@components/ProductCard";
-import { assertIsProducts } from "@utils/checkers";
+import { Rating } from "@components/Rating";
+import { fetchProducts } from "@utils/fetchProducts";
 import Link from "next/link";
 
 export const ProductPage = async ({ params }: { params: { id: string } }) => {
-  const res = await fetch(`http:/localhost:3000/api/products`);
-
-  const products = (await res.json()) as unknown;
-  assertIsProducts(products);
-
+  const products = await fetchProducts();
   const product = products.find((p) => p._id === params.id);
 
   if (!product) {
@@ -17,14 +14,59 @@ export const ProductPage = async ({ params }: { params: { id: string } }) => {
 
   return (
     <Container>
-      <Link
-        href="/"
-        className="inline-flex items-center justify-center px-5 py-3 h-10 rounded-full text-white/60 font-bold bg-gray-600 my-4"
-      >
-        Go back home
-      </Link>
-      <div>Dynamic stuffs for </div>
-      <ProductCard product={product} />
+      <div className="my-6 px-3">
+        <Link href="/">
+          <button className="inline-flex items-center justify-center p-3 text-white bg-bsBlue text-center rounded-md h-10">
+            Go back home
+          </button>
+        </Link>
+      </div>
+      <div className="flex flex-wrap">
+        <div className="grow-0 shrink-0 basis-auto w-full md:w-5/12 max-w-full px-3 ">
+          <img src={product.image} alt="" className="max-w-full h-auto" />
+        </div>
+        <div className="grow-0 shrink-0 basis-auto w-full md:w-4/12 max-w-full px-3">
+          <div className="flex flex-col text-bsGray">
+            <div className="p-5 border-b border-borderColor">
+              <h3 className="mb-5 text-3xl">{product.name}</h3>
+            </div>
+            <div className="p-5 border-b border-borderColor">
+              <Rating rating={product.rating} numOfReviews={product.numReviews} />
+            </div>
+            <div className="p-5 border-b border-borderColor">${product.price}</div>
+            <div className="p-5">{product.description}</div>
+          </div>
+        </div>
+        <div className="grow-0 shrink-0 basis-auto w-full md:w-3/12 max-w-full px-3">
+          <div className="flex flex-col min-w-0 break-words border border-black/20 rounded-md">
+            <div className="flex flex-col text-bsGray">
+              <div className="flex border-b border-borderColor p-5">
+                <div className="grow-1 shrink-0 basis-6/12 px-3">Price:</div>
+                <div className="grow-1 shrink-0 basis-6/12 px-3">
+                  <span className="font-bold">${product.price}</span>
+                </div>
+              </div>
+              <div className="flex border-b border-borderColor p-5">
+                <div className="grow-1 shrink-0 basis-6/12 px-3">Status:</div>
+                <div className="grow-1 shrink-0 basis-6/12 px-3">
+                  <span className="font-bold">
+                    {product.countInStock >= 10
+                      ? "In Stock"
+                      : product.countInStock > 0
+                      ? "Few units left!"
+                      : "Out of stock!"}
+                  </span>
+                </div>
+              </div>
+              <div className="flex p-5">
+                <button className="inline-flex items-center justify-center p-3 text-white bg-bsBlue text-center rounded-md h-10">
+                  Add to cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </Container>
   );
 };

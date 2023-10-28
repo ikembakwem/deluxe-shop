@@ -17,7 +17,7 @@ export const Rating: FC<Props> = ({ rating, numOfReviews }) => {
       <span>{rating >= 4 ? <StarIcon /> : rating >= 3.5 ? <StarHalf /> : <StarOutline />}</span>
       <span>{rating >= 5 ? <StarIcon /> : rating >= 4.5 ? <StarHalf /> : <StarOutline />}</span>
       <span className="pl-2 font-semibold text-xs text-bsGray">
-        {numOfReviews && `${numOfReviews} reviews`}
+        {numOfReviews !== 0 ? `${numOfReviews} reviews` : "No Reviews yet"}
       </span>
     </div>
   );

@@ -22,7 +22,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
             </div>
           </Link>
           <div>
-            <Rating rating={product.rating} numOfReviews={product.numOfReviews} />
+            <Rating rating={product.rating} numOfReviews={product.numReviews} />
           </div>
           <h3 className="font-medium text-2xl text-bsGray">${product.price}</h3>
         </div>

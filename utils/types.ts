@@ -8,5 +8,5 @@ export type Product = {
   price: number;
   countInStock: number;
   rating: number;
-  numOfReviews: number;
+  numReviews: number;
 };
