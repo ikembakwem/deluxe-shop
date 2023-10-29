@@ -2,10 +2,11 @@ import { Col } from "@components/Col";
 import { Container } from "@components/Container";
 import { ProductCard } from "@components/ProductCard";
 import { Row } from "@components/Row";
-import { fetchProducts } from "@utils/fetchProducts";
+// import { fetchProducts } from "@utils/fetchProducts";
+import { products } from "@lib/products";
 
 export default async function Home() {
-  const products = await fetchProducts();
+  // const products = await fetchProducts();
 
   return (
     <div>
