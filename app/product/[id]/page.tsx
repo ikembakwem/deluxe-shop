@@ -13,7 +13,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export const ProductPage = async ({ params }: { params: { id: string } }) => {
+export default async function ProductPage({ params }: { params: { id: string } }) {
   const { id } = params;
 
   const products = await fetchProducts();
@@ -80,6 +80,4 @@ export const ProductPage = async ({ params }: { params: { id: string } }) => {
       </div>
     </Container>
   );
-};
-
-export default ProductPage;
+}
