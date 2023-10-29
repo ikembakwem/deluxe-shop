@@ -1,13 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import { Container } from "@components/Container";
 import { Rating } from "@components/Rating";
-// import { fetchProducts } from "@utils/fetchProducts";
+import { fetchProducts } from "@utils/fetchProducts";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { products } from "@lib/products.js";
 
 export async function generateStaticParams() {
-  // const products = await fetchProducts();
+  const products = await fetchProducts();
 
   return products.map((product) => ({
     id: product._id
@@ -17,7 +16,7 @@ export async function generateStaticParams() {
 export default async function ProductPage({ params }: { params: { id: string } }) {
   const { id } = params;
 
-  // const products = await fetchProducts();
+  const products = await fetchProducts();
   const product = products.find((p) => p._id === id);
 
   if (!product) {
