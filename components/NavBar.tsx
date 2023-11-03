@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import MenuPages from "./MenuPage";
 import HamburgerMenuIcon from "@components/icons/hamburger-menu.svg";
+import ShoppingCart from "@components/icons/cart.svg";
+import UserIcon from "@components/icons/user.svg";
 import CloseIcon from "@components/icons/cancel.svg";
 import Link from "next/link";
-import { Container } from "./Container";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth > 768 && isOpen) {
+      if (window.innerWidth > 768) {
         setIsOpen(false);
       }
     };
@@ -24,34 +25,42 @@ const NavBar = () => {
   }, []);
 
   return (
-    <header>
-      <Container className="h-14 flex justify-between items-center px-4 relative">
+    <>
+      <header className="h-14 flex justify-between items-center px-4 relative">
         <div className="font-bold text-2xl text-teal-900 md:basis-3/12">Deluxe shop</div>
-        <nav className="hidden md:flex justify-center gap-x-4 basis-6/12">
-          <Link href="/">Home</Link>
-          <Link href="/about">About</Link>
-          <Link href="/contact">Contact Us</Link>
-        </nav>
         <div className="flex items-center justify-end gap-x-2 text-gray-800 basis-3/12">
           <div className="hidden md:flex items-center gap-x-4">
-            <button>Sign In</button>
-            <button>Register</button>
+            <Link href="/login" className="inline-flex items-center gap-x-1">
+              <UserIcon />
+              <span>Sign In</span>
+            </Link>
+            <Link href="/cart" className="inline-flex items-center gap-x-1">
+              <ShoppingCart />
+              <span>Cart</span>
+            </Link>
           </div>
-          <button onClick={() => setIsOpen((prev) => (prev = !prev))} className="md:hidden">
-            {!isOpen ? (
-              <HamburgerMenuIcon className="h-6 w-6" />
-            ) : (
-              <CloseIcon className="h-6 w-6" />
-            )}
-          </button>
+          <div className="md:hidden flex items-center">
+            <Link href="/cart" className="inline-flex items-center justify-center h-11 w-11">
+              <UserIcon />
+            </Link>
+            <Link href="/cart" className="inline-flex items-center justify-center h-11 w-11">
+              <ShoppingCart />
+            </Link>
+            <button
+              onClick={() => setIsOpen((prev) => (prev = !prev))}
+              className="inline-flex items-center justify-center h-11 w-11"
+            >
+              {!isOpen ? (
+                <HamburgerMenuIcon className="h-6 w-6" />
+              ) : (
+                <CloseIcon className="h-6 w-6" />
+              )}
+            </button>
+          </div>
         </div>
-      </Container>
-      {isOpen ? (
-        <Container>
-          <MenuPages />
-        </Container>
-      ) : null}
-    </header>
+      </header>
+      {isOpen ? <MenuPages /> : null}
+    </>
   );
 };
 export default NavBar;
