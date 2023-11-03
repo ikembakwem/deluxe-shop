@@ -26,7 +26,7 @@ const NavBar = () => {
 
   return (
     <>
-      <header className="h-14 flex justify-between items-center px-4 relative">
+      <header className="h-14 flex justify-between items-center px-4 relative border-b border-gray-200">
         <div className="font-bold text-2xl text-teal-900 md:basis-3/12">Deluxe shop</div>
         <div className="flex items-center justify-end gap-x-2 text-gray-800 basis-3/12">
           <div className="hidden md:flex items-center gap-x-4">

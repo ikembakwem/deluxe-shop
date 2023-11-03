@@ -2,10 +2,10 @@ import Link from "next/link";
 
 const MenuPage = () => {
   return (
-    <div className="h-screen w-full md:hidden px-4">
-      <div className="absolute top-14 w-full z-50">
+    <div className="h-screen md:hidden">
+      <div className="absolute top-14 z-50 w-full px-4">
         <nav>
-          <div className="flex flex-col gap-4 py-4 border-t border-gray-200">
+          <div className="flex flex-col gap-4 py-4">
             <Link href="/categories">
               <span className="font-bold text-xl">Categories</span>
             </Link>
