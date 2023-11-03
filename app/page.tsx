@@ -10,7 +10,7 @@ export default async function Home() {
   return (
     <div>
       <Container>
-        <h1 className="text-4xl font-bold mb-4">Latest Products</h1>
+        <h1 className="text-4xl font-bold mb-4 text-bsGray">Latest Products</h1>
         <Row>
           {products.map((product) => (
             <Col key={product._id}>
